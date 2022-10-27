@@ -1,8 +1,5 @@
 #!/bin/bash
 
-sudo yum group install "Development Tools" << EOF
-y
-EOF
 sudo yum install wget << EOF
 y
 EOF
