@@ -6,8 +6,8 @@ EOF
 rm -rf Miniconda3-latest-Linux-x86_64.sh << EOF
 y
 EOF
-sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash ~/miniconda.sh -p $HOME/miniconda
+sudo wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh 
+bash ~/Miniconda3-latest-Linux-x86_64.sh -p $HOME/miniconda
 
 rm -f conda.txt
 wget https://raw.githubusercontent.com/emamars95/CIUK/main/conda.txt >> config.log
