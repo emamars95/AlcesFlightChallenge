@@ -3,6 +3,8 @@
 function conda_act() {
         eval "$(conda shell.bash hook)"
         conda activate hpl
+
+        conda env list
 }
 
 function setup() {
@@ -36,6 +38,17 @@ function benchmark_memory() {
         ./stream >> stream.out
 }
 
+function benchmark_gpu_memory() {
+        root=BabelStream
+
+        rm -rf $root
+        git clone https://github.com/UoB-HPC/${root}.git
+        cd $root
+        cmake -Bbuild -H. -DMODEL=cuda -DCMAKE_CUDA_COMPILER="$HOME/miniconda/envs/hpl/bin/nvcc" -DCUDA_ARCH="sm_86" -DCMAKE_CXX_COMPILER="/home/centos/openmpi/bin/mpicxx"
+        cmake --build build
+        ./build/cuda-stream > ./build/cuda.out
+}
+
 
 function compile_MPI() {
         wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.4.tar.gz
@@ -48,9 +61,7 @@ function compile_MPI() {
 }
 
 function benchmark_IMB() {
-        export PATH="$PATH:$HOME/openmpi/bin"
-        export LD_LIBRARY = "$PATH:$HOME/openmpi/lib"
-        export CC="mpicc"
+        echo "Implement here"
 }
 
 function benchmark_hpl() {
@@ -90,11 +101,11 @@ function set_up_A40() {
         wget https://uk.download.nvidia.com/tesla/515.65.01/NVIDIA-Linux-x86_64-515.65.01.run
         sudo yum install "kernel-devel-uname-r == $(uname -r)"
         chmod 770 NVIDIA-Linux-x86_64-515.65.01.run
-        ./NVIDIA-Linux-x86_64-515.65.01.run
+        sudo ./NVIDIA-Linux-x86_64-515.65.01.run
 }
 
 function set_up_gromacs() {
-        root=gromacs-5.1.4
+        root=gromacs-2022.1
 
         rm -rf $root
         wget http://ftp.gromacs.org/pub/gromacs/${root}.tar.gz
@@ -103,32 +114,44 @@ function set_up_gromacs() {
         cd $root
         mkdir build
         cd build
-        #export PATH="$PATH:/home/centos/openmpi/bin"
-        #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/centos/openmpi/lib"
-        cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON -DGMX_GPU=CUDA -DCMAKE_INSTALL_PREFIX=${HOME}/gromacs LDFLAGS="-L${HOME}/openmpi/lib"
-        #cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DREGRESSIONTEST_PATH= -DGMX_GPU=CUDA -DCMAKE_INSTALL_PREFIX=${HOME}/gromacs
-        #make
-        #make check
-        #sudo make install
-        #source /usr/local/gromacs/bin/GMXRC
+
+        cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGMX_GPU=CUDA -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-11.8/ -DCMAKE_INSTALL_PREFIX=${HOME}/gromacs
+
+        make -j10
+        make check
+        sudo make install
+        source ${HOME}/gromacs/bin/GMXRC
 }
 
 
+function set_up_test()  {
+        sudo yum install php
+        sudo yum install php-xml
+        sudo yum install php-pecl-json
+        git clone https://github.com/phoronix-test-suite/phoronix-test-suite.git
+        cd phoronix-test-suite
+        ./phoronix-test-suite benchmark gromacs
+}
+
 function benchmark() {
-        conda_act
+        #conda_act
 
         #benchmark_memory
         #compile_MPI
         #benchmark_IMB
         #benchmark_hpl
-        benchmark_manual
+        #benchmark_manual
+
         #set_up_A40
+        #benchmark_gpu_memory
+
+        #export PATH="$PATH:/usr/local/cuda-11.8/bin"
+        #export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/cuda-11.8/lib"
         #set_up_gromacs
+        set_up_test()
 }
+
+
 
 #setup
 benchmark
-~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-~                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-~                                                                                                                                                                                                      
