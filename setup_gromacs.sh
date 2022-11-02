@@ -27,7 +27,7 @@ function build_gromacs() {
         mkdir -p build
         cd build
 
-        #cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON -DGMX_GPU=CUDA -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DGMX_MPI=ON
+        cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=ON -DGMX_GPU=CUDA -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda -DGMX_MPI=ON
         make -j8
         make check
         sudo make install
@@ -37,7 +37,7 @@ function build_gromacs() {
 function install_gromacs() {
 	gromacs=gromacs-2022.3
 
-	#download $gromacs
+	download $gromacs
 
 	setup_cuda 
 	set_openmpi
