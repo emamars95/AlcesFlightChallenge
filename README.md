@@ -1,4 +1,4 @@
-﻿CIUK challenge
+﻿CIUK challenge (please OPEN PDF, my conversion from pdf to md did not work as I was expecting)
 
 Bristol Team A November 2, 2022
 
