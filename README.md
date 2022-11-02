@@ -251,17 +251,17 @@ Result uploaded at https: result vm A
 ```
 ## 3 Workflow
 
-```
+
 A full script to configure a fresh node and installing the required package to benchmark can
 be found at githup repo. This allow flexibility on which package install depending what is
 needed.
-```
-```
+
+
 The script full workflow can be initialized as:
 curl -o ‘pwd‘/tmp.sh https://raw.githubusercontent.com/emamars95/CIUK/main/setup.sh
 bash tmp.sh
 The script will follow four important process:
-```
+
 - setup:
     **-** The set up install and download important packages such as compilers, miniconda
        as environment manager, and a git repository where other scripts are located.
