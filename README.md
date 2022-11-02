@@ -16,25 +16,40 @@ boost the performance.
 
 ![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.001.png)
 
-Figure 1: cpu baremetal
+Test of Memory using **STREAM** , compiled with _gcc 8.5 GNU_ compiler. We run STREAM
+with two threads and compiled as : gcc -fopenmp -D_OPENMP -o3 -Ofast -mtune=native
+-DSTREAM_ARRAY_SIZE=60000000. Were -mtune and -mtune=native are required to have a
 
-1. **Memory Benchmark**
 
-Test of Memory using **STREAM**, compiled with *gcc 8.5 GNU*compiler. We run STREAM with two threads and compiled as : gcc -fopenmp -D\_OPENMP -o3 -Ofast -mtune=native -DSTREAM\_ARRAY\_SIZE=60000000. Were -mtune and -mtune=native are required to have a competitive memory performance. These are considered the default setting for stream bench- mark and should be assumed if not stated otherwise.
+competitive memory performance. These are considered the default setting for stream bench-
+mark and should be assumed if not stated otherwise.
 
-Function Best Rate MB/s Avg time Min time Max time ![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.002.png)Copy: 48290.2 0.030717 0.019880 0.042960 Scale: 30401.8 0.041976 0.031577 0.060825 Add: 32668.6 0.056252 0.044079 0.094283 Triad: 32490.2 0.052199 0.044321 0.059765
-
+```
+Function Best Rate MB/s Avg time Min time Max time
+Copy: 48290.2 0.030717 0.019880 0.
+Scale: 30401.8 0.041976 0.031577 0.
+Add: 32668.6 0.056252 0.044079 0.
+Triad: 32490.2 0.052199 0.044321 0.
+```
 Results are consistent with DDR4 type of RAM.
 
-2. **Performance Benchmark**
+**1.1.2 Performance Benchmark**
 
-Test using **High Performance Computing Linpack Benchmark** (HPL) as linear algebra benchmark. We compiled hpl with *MKL*and *gcc 8.5 GNU*compiler. These are considered the default setting for stream benchmark and should be assumed if not stated otherwise. The HPL input data has been tuned to customize the hardware of the machine following the procedure at: HPL configure
+Test using **High Performance Computing Linpack Benchmark** (HPL) as linear algebra
+benchmark. We compiled hpl with _MKL_ and _gcc 8.5 GNU_ compiler. These are considered the
+default setting for stream benchmark and should be assumed if not stated otherwise. The HPL
+input data has been tuned to customize the hardware of the machine following the procedure
+at: HPL configure
 
-T/V N NB P Q Time Gflop       ![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.003.png)WR11C2R4 40000 192 1 32 48.69 8.7637e+02 WR11C2R4 40000 192 2 16 42.98 9.9279e+02 WR11C2R4 40000 192 4 8 96.11 4.3872e+02
-
-The blocking size is chose as default.  ×  are the number of MPI processes which is set equal to the total number of physical cores. N is the problem size, note that we have used a memory burden quite lower than the total memory available to the cluster.![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.004.png)
-
-⋅    (     )
+```
+T/V N NB P Q Time Gflop
+WR11C2R4 40000 192 1 32 48.69 8.7637e+
+WR11C2R4 40000 192 2 16 42.98 9.9279e+
+WR11C2R4 40000 192 4 8 96.11 4.3872e+
+```
+The blocking size is chose as default.𝑃×𝑄are the number of MPI processes which is set equal
+to the total number of physical cores. N is the problem size, note that we have used a memory
+burden quite lower than the total memory available to the cluster.
 
 ∼ (1.1) 8(     )![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.005.png)
 
