@@ -1,5 +1,7 @@
 # CIUK challenge
 
+To have a more clean view see PDF version
+
 ### Bristol Team A
 
 ### November 2, 2022
