@@ -1,12 +1,18 @@
-﻿CIUK challenge (please OPEN PDF, my conversion from pdf to md did not work as I was expecting)
+# CIUK challenge
 
-Bristol Team A November 2, 2022
+### Bristol Team A
 
-We focus on the comparison between (i) two baremetal hardware and between (ii) baremetal and virtual machine on the same hardware. As expected baremetal offerbetter performance with respect to VM. However, we highlight that the correct choice of software is crucial to boost the performance.
+### November 2, 2022
 
-**1 Hardware Performance**
+```
+We focus on the comparison between (i) two baremetal hardware and between (ii) baremetal
+and virtual machine on the same hardware. As expected baremetal offer better performance
+with respect to VM. However, we highlight that the correct choice of software is crucial to
+boost the performance.
+```
+## 1 Hardware Performance
 
-1. **baremetal.intel.25gb**
+### 1.1 baremetal.intel.25gb
 
 ![](Aspose.Words.21dae388-928e-4a07-85e3-4bb8d03bd39f.001.png)
 
