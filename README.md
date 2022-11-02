@@ -85,6 +85,7 @@ Scale: 63283.4 0.025323 0.025283 0.
 Add: 65361.1 0.036873 0.036719 0.
 Triad: 65464.8 0.037276 0.036661 0.
 ```
+
 Test of GPU Memory using **BabelStream** version 4.0. We use _CUDA_ implementation with:
 Array size: 268.4 MB (=0.3 GB) and Total size: 805.3 MB (=0.8 GB). To compile we have used
 the _g++ 8.5 GNU_ compiler. We observe an increase of almost one-order of magnitude with
@@ -98,11 +99,10 @@ Add: 582129.123 0.00138 0.00140 0.
 Triad: 565224.851 0.00095 0.00096 0.
 ```
 
-```
 1.2.2 Performance Benchmark
 Test using High Performance Computing Linpack Benchmark (HPL) as linear algebra
 benchmark. Compilation with OpenBlas and crosstool-NG 7.3 GNU.
-```
+
 ```
 T/V N NB P Q Time s Gflop
 WR11C2R4 14208 192 1 64 76.78 2.4908e+
