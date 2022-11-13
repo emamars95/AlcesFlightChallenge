@@ -269,6 +269,6 @@ The script will follow four important process:
        driver associated with it with little interaction from the user. It also download and
        compile MPI, MKL and CUDA.
     **-** The set up install gromacs.
-- Gromcas job is lunched in the cluster. Not implemented
-- Back up of the important data. Not Implemented
-- Shut off the instance and cleaning the node. Not implemented.
+- Gromcas job is lunched in the cluster
+- Back up of the important data using scp protocol 
+- Shut off the instance and cleaning the node 
